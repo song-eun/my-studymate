@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+@import "./reset.css";
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  font-family: "Nunito Sans", sans-serif;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock-frame {
+  position: absolute;
+  background-color: white;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+}
+
+.clock {
+  width: 430px;
+  height: 430px;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 5;
+  position: absolute;
+}
+
+.canvas {
+  width: 450px;
+  height: 450px;
+  z-index: 10;
+  position: absolute;
+  /*  */
+  rotate: -90deg;
+  /*  */
+}
+
+.clock-dial {
+  width: 465px;
+  height: 465px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.dial {
+  width: 2px;
+  height: 98%;
+  background-color: black;
+  rotate: 90deg;
+  position: absolute;
+}
+
+.thick {
+  height: 100%;
+  width: 4px;
+}
+
+.clock-index {
+  width: 550px;
+  height: 550px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.index {
+  width: 10px;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.index span {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.clock-axis {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  background-color: whitesmoke;
+  border-radius: 50%;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+}
+
+.clock-hands {
+  width: 20px;
+  height: 80px;
+  background-color: whitesmoke;
+  position: absolute;
+  z-index: 20;
+  border-radius: 20px;
+  top: -30px;
+}
