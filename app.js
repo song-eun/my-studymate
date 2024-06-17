@@ -50,13 +50,16 @@ function drawArc(degree) {
   ctx.clearRect(0, 0, wWidth, wHeight);
   ctx.beginPath();
   ctx.moveTo(centerX, centerY);
+
+  const arcDegree = degree === 0 ? 360 : degree;
+
   ctx.arc(
     centerX,
     centerY,
     Math.floor(wHeight / 2),
     // 컴퓨터에서의 각도 단위는 degree값이 아니다. radian값이다.
     toRadian(0),
-    toRadian(degree),
+    toRadian(arcDegree),
     true
   );
   ctx.closePath();
@@ -64,6 +67,11 @@ function drawArc(degree) {
   ctx.fill();
 
   clockAxis.style.transform = `rotate(-${calcActualDegree(degree)}deg)`;
+}
+
+function roundToNearestMinute(degree) {
+  const minutesInDegree = 360 / 60;
+  return Math.round(degree / minutesInDegree) * minutesInDegree;
 }
 
 let setDegree;
@@ -74,7 +82,6 @@ let seconds = 0;
 function updateArc() {
   seconds++;
   setDegree += 1 / 12;
-
   drawArc(setDegree);
 
   if (seconds >= setTime) {
@@ -83,25 +90,28 @@ function updateArc() {
   }
 }
 
-function mouseover(e) {
+function mouseup(e) {
   seconds = 0;
 
   canvas.removeEventListener("mousemove", mousemove);
 
   setDegree = calcAngleDegrees(e.offsetX - centerX, e.offsetY - centerY);
+
+  setDegree = roundToNearestMinute(setDegree); // 1분 단위로 각도를 조정
+
+  if (setDegree >= 360 || setDegree === 0) {
+    setDegree = 0; // 360도는 0도로 처리
+  }
   setTime = calcActualDegree(setDegree) * 10;
 
   timer = setInterval(updateArc, 1000);
-}
-
-function roundToNearestMinute(degree) {
-  return (Math.round((degree * 60) / 360) * 360) / 60;
 }
 
 function mousemove(e) {
   if (timer) clearInterval(timer);
   // 사이각
   let theta = calcAngleDegrees(e.offsetX - centerX, e.offsetY - centerY);
+  theta = roundToNearestMinute(theta); // 1분 단위로 각도를 조정
   drawArc(theta);
 }
 
@@ -110,6 +120,6 @@ function click(e) {
 }
 
 canvas.addEventListener("mousedown", click);
-canvas.addEventListener("mouseup", mouseover);
+canvas.addEventListener("mouseup", mouseup);
 
 initializeCanvas();
