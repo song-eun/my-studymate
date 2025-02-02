@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap");
 @import "./reset.css";
 
 body {
@@ -62,7 +62,7 @@ body {
 .dial {
   width: 2px;
   height: 98%;
-  background-color: black;
+  background-color: rgb(60, 60, 60);
   rotate: 90deg;
   position: absolute;
 }
@@ -94,13 +94,15 @@ body {
 .index span {
   font-size: 30px;
   font-weight: 700;
+  color: rgb(60, 60, 60);
+  font-family: "Oswald";
 }
 
 .clock-axis {
   width: 80px;
   height: 80px;
   position: absolute;
-  background-color: whitesmoke;
+  background-color: rgb(240, 240, 240);
   border-radius: 50%;
   z-index: 15;
   display: flex;
@@ -110,7 +112,7 @@ body {
 .clock-hands {
   width: 20px;
   height: 80px;
-  background-color: whitesmoke;
+  background-color: rgb(240, 240, 240);
   position: absolute;
   z-index: 20;
   border-radius: 20px;
